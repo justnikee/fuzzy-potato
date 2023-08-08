@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios';
 // import Products from '.././src/components/products'
+import AddProduct from './components/addProduct'
 
 
 interface Product {
@@ -42,6 +43,7 @@ function App() {
       </div>
 
     </div>
+    <AddProduct/>
     </>
   )
 }
