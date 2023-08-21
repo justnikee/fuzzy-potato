@@ -1,14 +1,12 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
+import Layout from "../layout/layout";
 
 const Home = () => {
   return (
     <>
-    <Link to='/'>Home</Link>
-    <Link to='/addproduct'>Add Products</Link>
-    <Link to='/products'>Products</Link>         
+      <Layout>Home page</Layout>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
