@@ -1,11 +1,14 @@
 import Layout from "../../layout/layout";
-type Props = {};
-
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
-    <div>
-      <Layout>Login</Layout>
-    </div>
+    <>
+      <Layout>
+        Login
+        <p>Don't have account?</p>
+        <Link to={"/signup"}>Create account now!</Link>
+      </Layout>
+    </>
   );
 };
 

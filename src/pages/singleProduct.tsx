@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Layout from "../layout/layout";
 
 type Product = {
   thumbnail: string;
@@ -29,16 +30,18 @@ const SingleProduct = () => {
 
   return (
     <>
-      <div>
+      <Layout>
         <div>
-          <img src={product.thumbnail} alt="" />
+          <div>
+            <img src={product.thumbnail} alt="" />
+          </div>
+          <div>
+            <h2>{product.title}</h2>
+            <p>{product.price}</p>
+            <p>{product.description}</p>
+          </div>
         </div>
-        <div>
-          <h2>{product.title}</h2>
-          <p>{product.price}</p>
-          <p>{product.description}</p>
-        </div>
-      </div>
+      </Layout>
     </>
   );
 };

@@ -8,7 +8,7 @@ function Header({}: Props) {
     <>
       <nav
         className={css`
-          background: #ccc;
+          background: #fff;
           color: #000;
           display: flex;
           justify-content: center;

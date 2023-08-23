@@ -3,3 +3,15 @@
 /* font-family: 'ADLaM Display', cursive;
 font-family: 'Bodoni Moda', serif;
 font-family: 'Poppins', sans-serif; */
+
+p,
+a {
+  font-family: "poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "ADLaM Display", cursive;
+}
