@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Layout from "../../layout/layout";
-import { css } from "@emotion/css";
+import toast, { Toaster } from "react-hot-toast";
 import styled from "@emotion/styled";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
+//const navigate = useNavigate();
 const Input = styled.input`
   border: 1px solid #e5e5e5;
   color: #8d8d8d;
@@ -29,14 +32,34 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(form);
+    try {
+      const res = await axios.post("http://localhost:8080/users/register", {
+        firstname: form.firstname,
+        lastname: form.lastname,
+        email: form.email,
+        age: form.age,
+        address: form.address,
+        password: form.password,
+      });
+      console.log(res.data);
+      if (res.data.success) {
+        toast.success(res.data.message);
+        // navigate("./Login.tsx");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went Wrong😢");
+    }
   };
 
   return (
     <>
       <Layout>
+        <Toaster />
         <section className="flex justify-start items-center flex-col text-center h-screen">
           <h2 className="text-4xl">Become a member</h2>
           <div className="flex justify-center w-full">
