@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Layout from "../../layout/layout";
 import toast, { Toaster } from "react-hot-toast";
 import styled from "@emotion/styled";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 //const navigate = useNavigate();
 const Input = styled.input`
@@ -25,7 +24,7 @@ const SignUp = () => {
     password: "",
   });
 
-  const handleChnage = (e: any) => {
+  const handleChange = (e: any) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -34,19 +33,29 @@ const SignUp = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+
     try {
-      const res = await axios.post("http://localhost:8080/users/register", {
-        firstname: form.firstname,
-        lastname: form.lastname,
-        email: form.email,
-        age: form.age,
-        address: form.address,
-        password: form.password,
-      });
+      const res = await axios.post(
+        "http://localhost:8080/users/register",
+        {
+          firstname: form.firstname,
+          lastname: form.lastname,
+          age: form.age,
+          email: form.email,
+          phone: form.phone,
+          address: form.address,
+          password: form.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
       console.log(res.data);
       if (res.data.success) {
         toast.success(res.data.message);
-        // navigate("./Login.tsx");
       } else {
         toast.error(res.data.message);
       }
@@ -69,7 +78,7 @@ const SignUp = () => {
             >
               <Input
                 type="text"
-                onChange={handleChnage}
+                onChange={handleChange}
                 placeholder="First Name"
                 name="firstname"
                 value={form.firstname}
@@ -79,42 +88,42 @@ const SignUp = () => {
                 type="text"
                 placeholder="Last Name"
                 value={form.lastname}
-                onChange={handleChnage}
+                onChange={handleChange}
               />
               <Input
                 name="email"
                 type="text"
                 placeholder="Email"
                 value={form.email}
-                onChange={handleChnage}
+                onChange={handleChange}
               />
               <Input
                 name="phone"
                 type="text"
                 placeholder="Phone"
                 value={form.phone}
-                onChange={handleChnage}
+                onChange={handleChange}
               />
               <Input
                 name="age"
                 type="text"
                 placeholder="Age"
                 value={form.age}
-                onChange={handleChnage}
+                onChange={handleChange}
               />
               <Input
                 name="address"
                 type="text"
                 placeholder="Address"
                 value={form.address}
-                onChange={handleChnage}
+                onChange={handleChange}
               />
               <Input
                 name="password"
                 type="text"
                 placeholder="Password"
                 value={form.password}
-                onChange={handleChnage}
+                onChange={handleChange}
               />
               <button className="bg-black text-white px-10 py-3 uppercase">
                 Join us
