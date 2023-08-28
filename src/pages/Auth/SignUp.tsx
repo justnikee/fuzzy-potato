@@ -3,8 +3,9 @@ import Layout from "../../layout/layout";
 import toast, { Toaster } from "react-hot-toast";
 import styled from "@emotion/styled";
 import axios from "axios";
+// import { useNavigate } from "react-router-dom";
 
-//const navigate = useNavigate();
+// const navigate = useNavigate();
 const Input = styled.input`
   border: 1px solid #e5e5e5;
   color: #8d8d8d;
@@ -56,6 +57,7 @@ const SignUp = () => {
       console.log(res.data);
       if (res.data.success) {
         toast.success(res.data.message);
+        // navigate("/Login");
       } else {
         toast.error(res.data.message);
       }
