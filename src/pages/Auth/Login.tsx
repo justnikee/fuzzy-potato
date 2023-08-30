@@ -4,9 +4,8 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-// const navigate = useNavigate();
 const Input = styled.input`
   border: 1px solid #e5e5e5;
   color: #8d8d8d;
@@ -16,6 +15,8 @@ const Input = styled.input`
 `;
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
@@ -43,13 +44,15 @@ const Login = () => {
           },
         }
       );
-      console.log(res.data);
-
-      if (res.data.success) {
+      if (res.data.sucess) {
         toast.success(res.data.message);
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       } else {
         toast.error(res.data.error);
       }
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     }

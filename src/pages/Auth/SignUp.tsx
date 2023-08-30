@@ -3,9 +3,8 @@ import Layout from "../../layout/layout";
 import toast, { Toaster } from "react-hot-toast";
 import styled from "@emotion/styled";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-// const navigate = useNavigate();
 const Input = styled.input`
   border: 1px solid #e5e5e5;
   color: #8d8d8d;
@@ -15,6 +14,8 @@ const Input = styled.input`
 `;
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     firstname: "",
     lastname: "",
@@ -53,14 +54,15 @@ const SignUp = () => {
           },
         }
       );
-
-      console.log(res.data);
       if (res.data.success) {
         toast.success(res.data.message);
-        // navigate("/Login");
+        setTimeout(() => {
+          navigate("/Login");
+        }, 2000);
       } else {
         toast.error(res.data.message);
       }
+      console.log(res.data);
     } catch (error) {
       console.log(error);
       toast.error("Something Went Wrong😢");
