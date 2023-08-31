@@ -46,6 +46,9 @@ const Login = () => {
       );
       if (res.data.sucess) {
         toast.success(res.data.message);
+
+        localStorage.setItem("user", JSON.stringify(res.data));
+
         setTimeout(() => {
           navigate("/");
         }, 2000);
