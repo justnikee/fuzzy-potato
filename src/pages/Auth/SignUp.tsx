@@ -4,6 +4,8 @@ import toast, { Toaster } from "react-hot-toast";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { register, reset } from "../../store/slices/authSlice";
 
 const Input = styled.input`
   border: 1px solid #e5e5e5;
@@ -15,6 +17,11 @@ const Input = styled.input`
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isError, isSuccess, messgae } = useSelector(
+    (state) => state.auth
+  );
 
   const [form, setForm] = useState({
     firstname: "",
