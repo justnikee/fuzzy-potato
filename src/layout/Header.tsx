@@ -1,9 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { css } from "@emotion/css";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, reset } from "../store/slices/authSlice";
 
 type Props = {};
 
 function Header({}: Props) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state: any) => state.auth);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/");
+  };
   return (
     <>
       <nav
@@ -62,7 +74,14 @@ function Header({}: Props) {
               `}
             >
               <Link to="/products">Cart</Link>
-              <Link to="/login">Login</Link>
+              {user ? (
+                <p onClick={handleLogout}>Logout</p>
+              ) : (
+                <>
+                  <Link to={"/signup"}>Register</Link>
+                  <Link to="/login">Login</Link>
+                </>
+              )}
             </div>
           </div>
         </div>

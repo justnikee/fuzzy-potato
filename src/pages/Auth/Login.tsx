@@ -1,10 +1,12 @@
 import Layout from "../../layout/layout";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { login, reset } from "../../store/slices/authSlice";
+import { log } from "console";
 
 const Input = styled.input`
   border: 1px solid #e5e5e5;
@@ -15,12 +17,17 @@ const Input = styled.input`
 `;
 
 const Login = () => {
-  const navigate = useNavigate();
-
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isError, isSuccess, messgae } = useSelector(
+    (state) => state.auth
+  );
 
   const handleChange = (e: any) => {
     setLoginForm({
@@ -29,37 +36,32 @@ const Login = () => {
     });
   };
 
+  useEffect(() => {
+    if (isError) {
+      toast.error(messgae);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+      console.log("loged in");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, messgae, navigate, dispatch]);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    try {
-      const res = await axios.post(
-        "http://localhost:8080/users/login",
-        {
-          email: loginForm.email,
-          password: loginForm.password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (res.data.sucess) {
-        toast.success(res.data.message);
 
-        // localStorage.setItem("user", JSON.stringify(res.data));
+    const userData = {
+      ...loginForm,
+    };
 
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
-      } else {
-        toast.error(res.data.error);
-      }
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(login(userData));
   };
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <>

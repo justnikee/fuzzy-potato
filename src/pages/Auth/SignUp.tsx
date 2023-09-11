@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../../layout/layout";
 import toast, { Toaster } from "react-hot-toast";
 import styled from "@emotion/styled";
@@ -40,41 +40,64 @@ const SignUp = () => {
     });
   };
 
+  useEffect(() => {
+    if (isError) {
+      toast.error(messgae);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+      console.log("loged in");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, messgae, navigate, dispatch]);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    try {
-      const res = await axios.post(
-        "http://localhost:8080/users/register",
-        {
-          firstname: form.firstname,
-          lastname: form.lastname,
-          age: form.age,
-          email: form.email,
-          phone: form.phone,
-          address: form.address,
-          password: form.password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (res.data.success) {
-        toast.success(res.data.message);
-        setTimeout(() => {
-          navigate("/Login");
-        }, 2000);
-      } else {
-        toast.error(res.data.message);
-      }
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-      toast.error("Something Went Wrong😢");
-    }
+    const userData = {
+      ...form,
+    };
+
+    dispatch(register(userData));
+
+    // try {
+    //   const res = await axios.post(
+    //     "http://localhost:8080/users/register",
+    //     {
+    //       firstname: form.firstname,
+    //       lastname: form.lastname,
+    //       age: form.age,
+    //       email: form.email,
+    //       phone: form.phone,
+    //       address: form.address,
+    //       password: form.password,
+    //     },
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //     }
+    //   );
+    //   if (res.data.success) {
+    //     toast.success(res.data.message);
+    //     setTimeout(() => {
+    //       navigate("/Login");
+    //     }, 2000);
+    //   } else {
+    //     toast.error(res.data.message);
+    //   }
+    //   console.log(res.data);
+    // } catch (error) {
+    //   console.log(error);
+    //   toast.error("Something Went Wrong😢");
+    // }
   };
+
+  if (isLoading) {
+    <div>Loading...</div>;
+  }
 
   return (
     <>

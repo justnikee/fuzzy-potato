@@ -1,20 +1,57 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
-//register user
-const register = async (userData: any) => {
-  const res = await axios.post(
-    "http://localhost:8080/users/register",
-    userData
-  );
+interface UserData {
+  username: string;
+  password: string;
+}
 
-  if (res.data) {
-    localStorage.setItem("user", JSON.stringify(res.data));
+interface User {
+  id: number;
+  username: string;
+}
+
+const register = async (userData: UserData): Promise<User | undefined> => {
+  try {
+    const res: AxiosResponse<User> = await axios.post(
+      "http://localhost:8080/users/register",
+      userData
+    );
+
+    if (res.data) {
+      localStorage.setItem("user", JSON.stringify(res.data));
+    }
+
+    return res.data;
+  } catch (error) {
+    throw error;
   }
-  return res.data;
+};
+
+const logout = async (): Promise<void> => {
+  localStorage.removeItem("user");
+};
+
+const login = async (userData: UserData): Promise<User | undefined> => {
+  try {
+    const res: AxiosResponse<User> = await axios.post(
+      "http://localhost:8080/users/login",
+      userData
+    );
+
+    if (res.data) {
+      localStorage.setItem("user", JSON.stringify(res.data));
+    }
+
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 const authService = {
   register,
+  logout,
+  login,
 };
 
 export default authService;
