@@ -8,6 +8,7 @@ type Product = {
   title: string;
   thumbnail: string;
   price: string;
+  catagory: string;
 };
 
 const Products = () => {
@@ -31,9 +32,9 @@ const Products = () => {
         {loading ? (
           <p> loading...</p>
         ) : (
-          <div className="flex flex-col justify-center items-center">
-            <h2 className="text-xl">Products</h2>
-            <div className="grid grid-cols-4">
+          <div className="">
+            <h2 className="text-xl text-left mb-4 mt-4">Products</h2>
+            <div className="grid grid-cols-3 gap-8">
               {products?.map((product: Product, index: number) => (
                 <Link to={`/products/${product._id}`}>
                   <div
@@ -41,9 +42,12 @@ const Products = () => {
                     key={index}
                   >
                     <img src={product.thumbnail} alt={product.title} />
-                    <div>
-                      <h2 className="text-l">{product.title}</h2>
-                      <h3 className="text-m">{product.price}</h3>
+                    <div className="w-full">
+                      <h2 className="text-xl text-left">{product.title}</h2>
+                      <h3 className="text-m font-thin font-[Bodoni Moda]">
+                        {product.category}
+                      </h3>
+                      <h3 className="text-m">MRP : ₹{product.price}</h3>
                     </div>
                   </div>
                 </Link>

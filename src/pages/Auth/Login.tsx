@@ -6,7 +6,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { login, reset } from "../../store/slices/authSlice";
-import { log } from "console";
 
 const Input = styled.input`
   border: 1px solid #e5e5e5;
@@ -42,8 +41,10 @@ const Login = () => {
     }
 
     if (isSuccess || user) {
-      navigate("/");
-      console.log("loged in");
+      toast.success("Wow You Logged In! 💖");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     }
 
     dispatch(reset());

@@ -44,16 +44,22 @@ function Header({}: Props) {
               width: 33%;
             `}
           >
-            <Link to="/">Home</Link>
-            <Link to="/addproduct">Add Products</Link>
-            <Link to="/products">Products</Link>
+            <Link className="hover:underline" to="/">
+              Home
+            </Link>
+            <Link className="hover:underline" to="/addproduct">
+              Add Products
+            </Link>
+            <Link className="hover:underline" to="/products">
+              Products
+            </Link>
           </div>
           <div
             className={css`
               width: 33%;
             `}
           >
-            <Link to="/">
+            <Link className="hover:underline" to="/">
               <span
                 className={css`
                   font-family: "ADLaM Display", cursive;
@@ -73,13 +79,24 @@ function Header({}: Props) {
                 width: 33%;
               `}
             >
-              <Link to="/products">Cart</Link>
+              <Link className="hover:underline" to="/products">
+                Cart
+              </Link>
               {user ? (
-                <p onClick={handleLogout}>Logout</p>
+                <p
+                  className="cursor-pointer transition-all hover:underline "
+                  onClick={handleLogout}
+                >
+                  Logout
+                </p>
               ) : (
                 <>
-                  <Link to={"/signup"}>Register</Link>
-                  <Link to="/login">Login</Link>
+                  <Link className="hover:underline" to={"/signup"}>
+                    Register
+                  </Link>
+                  <Link className="hover:underline" to="/login">
+                    Login
+                  </Link>
                 </>
               )}
             </div>
