@@ -10,6 +10,7 @@ function Header({}: Props) {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state: any) => state.auth);
+  console.log(user);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -83,12 +84,17 @@ function Header({}: Props) {
                 Cart
               </Link>
               {user ? (
-                <p
-                  className="cursor-pointer transition-all hover:underline "
-                  onClick={handleLogout}
-                >
-                  Logout
-                </p>
+                <>
+                  <p
+                    className="cursor-pointer transition-all hover:underline "
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </p>
+                  <Link className="hover:underline" to="/account">
+                    Account
+                  </Link>
+                </>
               ) : (
                 <>
                   <Link className="hover:underline" to={"/signup"}>
