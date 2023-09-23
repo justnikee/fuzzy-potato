@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { css } from "@emotion/css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../store/slices/authSlice";
+import React from "react";
 
 type Props = {};
 
@@ -80,7 +81,7 @@ function Header({}: Props) {
                 width: 33%;
               `}
             >
-              <Link className="hover:underline" to="/products">
+              <Link className="hover:underline" to="/cart">
                 Cart
               </Link>
               {user ? (
@@ -113,4 +114,4 @@ function Header({}: Props) {
   );
 }
 
-export default Header;
+export default React.memo(Header);
