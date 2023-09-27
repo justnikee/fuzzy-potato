@@ -39,6 +39,7 @@ const login = async (userData: UserData): Promise<User | undefined> => {
     );
 
     if (res.data) {
+      localStorage.setItem("userId", JSON.stringify(res.data.user.userid));
       localStorage.setItem("user", JSON.stringify(res.data));
     }
 

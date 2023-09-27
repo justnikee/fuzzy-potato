@@ -32,6 +32,13 @@ const SingleProduct = () => {
 
   const handleCart = async () => {
     try {
+      const ProdID = param.id;
+      const sesProductId = localStorage.getItem("userId");
+
+      if (ProdID == sesProductId) {
+        console.log("yes-user");
+      }
+
       const res = await axios.post(`http://localhost:8080/cart/addtocart`, {
         productId: param.id,
         quantity: 1,

@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { css } from "@emotion/css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../store/slices/authSlice";
-import React from "react";
+import { getCartCount } from "../store/slices/cartSlice";
+import React, { useEffect } from "react";
 
 type Props = {};
 
@@ -11,13 +12,19 @@ function Header({}: Props) {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state: any) => state.auth);
+  const cartCount = useSelector((state: any) => state.cart.cartCount);
   console.log(user);
+  console.log(cartCount);
 
   const handleLogout = () => {
     dispatch(logout());
     dispatch(reset());
     navigate("/");
   };
+
+  useEffect(() => {
+    dispatch(getCartCount());
+  }, [user]);
   return (
     <>
       <nav
@@ -82,7 +89,7 @@ function Header({}: Props) {
               `}
             >
               <Link className="hover:underline" to="/cart">
-                Cart
+                Cart <span>{cartCount}</span>
               </Link>
               {user ? (
                 <>

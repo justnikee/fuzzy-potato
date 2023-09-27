@@ -22,7 +22,7 @@ const Cart = () => {
       const response = await axios.get<CartItem[]>(
         "http://localhost:8080/cart/allItems"
       );
-      console.log("Fetched Items", response.data);
+      console.log("Fetched Items", response.data.length);
       setItems(response.data);
     } catch (error) {
       console.error("Error fetching cart items:", error);
