@@ -20,7 +20,7 @@ const Cart = () => {
   const fetchCartItems = async () => {
     try {
       const response = await axios.get<CartItem[]>(
-        "http://localhost:8080/cart/allItems"
+        "http://localhost:5001/cart/allItems"
       );
       console.log("Fetched Items", response.data.length);
       setItems(response.data);
@@ -31,7 +31,7 @@ const Cart = () => {
 
   const handleRemove = async (item: CartItem) => {
     const res = await axios.delete(
-      `http://localhost:8080/cart/removeItem/${item._id}`
+      `http://localhost:5001/cart/removeItem/${item._id}`
     );
     console.log("Removed Items", res);
     fetchCartItems();

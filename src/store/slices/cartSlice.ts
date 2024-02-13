@@ -7,7 +7,7 @@ const initialState = {
 
 export const getCartCount = createAsyncThunk("cart/get", async () => {
   try {
-    const res = await axios.get("http://localhost:8080/cart/allItems");
+    const res = await axios.get("http://localhost:5001/cart/allItems");
     console.log(res);
     return res.data.length;
   } catch (error) {

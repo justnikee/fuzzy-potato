@@ -56,9 +56,6 @@ function Header({}: Props) {
             <Link className="hover:underline" to="/">
               Home
             </Link>
-            <Link className="hover:underline" to="/addproduct">
-              Add Products
-            </Link>
             <Link className="hover:underline" to="/products">
               Products
             </Link>

@@ -13,7 +13,7 @@ interface User {
 const register = async (userData: UserData): Promise<User | undefined> => {
   try {
     const res: AxiosResponse<User> = await axios.post(
-      "http://localhost:8080/users/register",
+      "http://localhost:5001/users/register",
       userData
     );
 
@@ -34,7 +34,7 @@ const logout = async (): Promise<void> => {
 const login = async (userData: UserData): Promise<User | undefined> => {
   try {
     const res: AxiosResponse<User> = await axios.post(
-      "http://localhost:8080/users/login",
+      "http://localhost:5001/users/login",
       userData
     );
 

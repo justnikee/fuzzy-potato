@@ -8,19 +8,23 @@ import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
 import Account from "./pages/Account";
 import Cart from "./pages/Cart";
+import Admin from "./dashboard/admin/admin";
+import Products2 from "./dashboard/pages/Products";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/addproduct" element={<AddProduct />} />
+        <Route path="/admin/addproduct" element={<AddProduct />} />
         <Route path="/products/:id" element={<SingleProduct />} />
         <Route path="/products" element={<Products />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/account" element={<Account />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/products" element={<Products2 />} />
       </Routes>
     </>
   );

@@ -29,7 +29,7 @@ const AddProduct = () => {
   };
 
   const addProduct = async (formData: any) => {
-    const res = await axios.post("http://localhost:8080/products", formData);
+    const res = await axios.post("http://localhost:5001/products", formData);
     console.log(res.data);
   };
 

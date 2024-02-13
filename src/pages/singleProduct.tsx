@@ -22,7 +22,7 @@ const SingleProduct = () => {
   const param = useParams<{ id: string }>();
 
   const getProduct = async () => {
-    const res = await axios.get(`http://localhost:8080/products/${param.id}`);
+    const res = await axios.get(`http://localhost:5001/products/${param.id}`);
     setProduct(res.data);
   };
 
@@ -39,7 +39,7 @@ const SingleProduct = () => {
         console.log("yes-user");
       }
 
-      const res = await axios.post(`http://localhost:8080/cart/addtocart`, {
+      const res = await axios.post(`http://localhost:5001/cart/addtocart`, {
         productId: param.id,
         quantity: 1,
       });
