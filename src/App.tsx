@@ -10,6 +10,9 @@ import Account from "./pages/Account";
 import Cart from "./pages/Cart";
 import Admin from "./dashboard/admin/admin";
 import Products2 from "./dashboard/pages/Products";
+import Collection from "./dashboard/pages/Collection";
+import CollectionProducts from "./dashboard/pages/CollectionProducts";
+import EditProduct from "./dashboard/pages/EditProduct";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/products" element={<Products2 />} />
+        <Route path="/admin/collection" element={<Collection/>} />
+        <Route path="/admin/collection/:categoryId" element={<CollectionProducts/>} />
+        <Route path="/admin/collection/:categoryId/:productId" element={<EditProduct/>} />
       </Routes>
     </>
   );
