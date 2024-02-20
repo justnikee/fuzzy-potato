@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 interface FormData {
@@ -34,51 +34,70 @@ const AddProduct = () => {
   };
 
   return (
-    <div>
+    <div className="flex max-w-6xl w-full m-auto mt-5">
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-2/4">
+        <div className="bg-slate-200 flex flex-col p-4 rounded-xl">
+        <label htmlFor="title" className="text-sm">Title</label>
         <input
           name="title"
           onChange={handlechange}
           type="text"
-          placeholder="title"
+          placeholder="Short Sleve T-Shirt"
+          className="p-2 rounded-md mb-3 mt-2 placeholder:text-sm"
         />
+        <label htmlFor="description" className="text-sm">Description</label>
         <textarea
           name="description"
           onChange={handlechange}
-          placeholder="description"
+          placeholder=""
+          className="p-2 rounded-md mb-3 mt-2"
         />
+        </div>
+
+        <div className="bg-slate-200 flex flex-col p-4 rounded-xl mt-4">
+        <label htmlFor="thumbnail" className="text-sm">Media</label>
+        <input
+          name="thumbnail"
+          onChange={handlechange}
+          type="text"
+          placeholder="Add Image Url"
+          className="p-2 rounded-md mb-3 mt-2"
+        />
+        </div>
+        <div className="bg-slate-200 flex flex-col p-4 rounded-xl mt-4">
         <input
           name="price"
           onChange={handlechange}
           type="text"
           placeholder="price"
+          className="p-2 rounded-md mb-3 mt-2"
         />
         <input
           name="discountPercentage"
           onChange={handlechange}
           type="text"
           placeholder="discountPercentage"
+          className="p-2 rounded-md mb-3 mt-2"
         />
         <input
           name="rating"
           onChange={handlechange}
           type="text"
           placeholder="rating"
+          className="p-2 rounded-md mb-3 mt-2"
         />
-        <input
-          name="thumbnail"
-          onChange={handlechange}
-          type="text"
-          placeholder="thumbnail"
-        />
+        </div>
+        <div className="bg-slate-200 flex flex-col p-4 rounded-xl mt-4">
         <input
           type="text"
           onChange={handlechange}
           name="brand"
           placeholder="brand"
+          className="p-2 rounded-md mb-3 mt-2"
         />
-        <input name="category" onChange={handlechange} placeholder="category" />
-        <button>submit</button>
+        <input name="category" onChange={handlechange} placeholder="Collection" className="p-2 rounded-md mb-3 mt-2" />
+        </div>
+        <button className="mt-4 mb-4 px-4 py-2 bg-black text-white rounded-md">submit</button>
       </form>
     </div>
   );
