@@ -5,8 +5,6 @@ interface FormData {
   title: string;
   description: string;
   price: number;
-  discount: number;
-  rating: number;
   thumbnail: string;
   category: string;
 }
@@ -70,20 +68,6 @@ const AddProduct = () => {
           onChange={handlechange}
           type="text"
           placeholder="price"
-          className="p-2 rounded-md mb-3 mt-2"
-        />
-        <input
-          name="discountPercentage"
-          onChange={handlechange}
-          type="text"
-          placeholder="discountPercentage"
-          className="p-2 rounded-md mb-3 mt-2"
-        />
-        <input
-          name="rating"
-          onChange={handlechange}
-          type="text"
-          placeholder="rating"
           className="p-2 rounded-md mb-3 mt-2"
         />
         </div>
