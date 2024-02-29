@@ -4,14 +4,25 @@
 font-family: 'Bodoni Moda', serif;
 font-family: 'Poppins', sans-serif; */
 
+@font-face {
+  font-family: Helvetica Text;
+  src: url(../public/fonts/HelveticaNowText.woff2);
+}
+
+@font-face {
+  font-family: "Nike";
+  src: url(../public/fonts/Nike-Futura.woff2);
+  font-weight: bold;
+}
+
 p,
 a {
-  font-family: "poppins", sans-serif;
+  font-family: Helvetica Text;
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: "ADLaM Display", cursive;
+  font-family: "Nike", cursive;
 }

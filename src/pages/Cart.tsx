@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Layout from "../layout/layout";
 import { Link } from "react-router-dom";
@@ -16,6 +16,7 @@ interface CartItem {
 
 const Cart = () => {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [qunatity , setQunatity] = useState(0);
 
   const fetchCartItems = async () => {
     try {
@@ -37,6 +38,18 @@ const Cart = () => {
     fetchCartItems();
   };
 
+  // decrese the qunatity
+
+  const handleMinus = async() => {
+    if(qunatity > 1){
+      setQunatity(qunatity - 1);
+    }      
+  }
+
+  const handlePlus = async() => {
+ setQunatity(qunatity + 1)     
+  }
+
   useEffect(() => {
     fetchCartItems();
   }, []);
@@ -52,6 +65,7 @@ const Cart = () => {
             {items?.map((item) => (
               <div
                 className="flex bg-slate-300 w-1/3 p-3 gap-3 mb-5"
+                data-id={item._id}
                 key={item._id}
               >
                 <img
@@ -67,6 +81,11 @@ const Cart = () => {
                     </Link>
                     <p>Price: INR{item.price}</p>
                   </div>
+                    <div className="flex bg-slate-300 border border-black h-5">
+                    <button onClick={handleMinus} className="border-r border-black flex-1">-</button>
+                    <input type="number" className="quantity-input   flex-1" value={qunatity} min="1" />
+                    <button onClick={handlePlus} className="border-l border-black flex-1">+</button>
+                    </div>
                   <div className="flex justify-between">
                     <p>Quantity: {item.quantity}</p>
                     <p

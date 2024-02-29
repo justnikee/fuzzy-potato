@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../store/slices/authSlice";
 import { getCartCount } from "../store/slices/cartSlice";
 import React, { useEffect } from "react";
+import AnnouncementBarTop from "./components/announcement-bar-top";
 
 type Props = {};
 
@@ -27,6 +28,7 @@ function Header({}: Props) {
   }, [user]);
   return (
     <>
+    <AnnouncementBarTop/>
       <nav
         className={css`
           background: #fff;
@@ -49,7 +51,7 @@ function Header({}: Props) {
             className={css`
               display: flex;
               gap: 10px;
-              font-family: "Poppins", cursive;
+              font-family: "Helvetica Text", cursive;
               width: 33%;
             `}
           >
@@ -68,14 +70,15 @@ function Header({}: Props) {
               width: 33%;
             `}
           >
-            <Link className="hover:underline" to="/">
+            <Link className="" to="/">
               <span
                 className={css`
-                  font-family: "ADLaM Display", cursive;
+                  font-family: "Nike", cursive;
                   font-size: 30px;
+                  font-weight: 800;
                 `}
               >
-                Store
+                Nxkeeyyy
               </span>
             </Link>
           </div>
@@ -84,11 +87,11 @@ function Header({}: Props) {
               className={css`
                 display: flex;
                 gap: 10px;
-                font-family: "Poppins", cursive;
+                font-family: "Helvetica Text", cursive;
                 width: 33%;
               `}
             >
-              <Link className="hover:underline" to="/cart">
+              <Link className="hover:underline flex gap-1" to="/cart">
                 Cart <span>{cartCount}</span>
               </Link>
               {user ? (

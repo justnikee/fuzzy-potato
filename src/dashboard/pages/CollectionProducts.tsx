@@ -9,9 +9,9 @@ type Props = {
 
 }
 
-const CollectionProducts = (props: Props) => {
+const CollectionProducts = () => {
 
-    const [products , setProducts] = useState([]);
+    const [products , setProducts] = useState<Props[]>([]);
    
     const { categoryId } = useParams();
 
@@ -28,7 +28,7 @@ const CollectionProducts = (props: Props) => {
     <div><h2>Products in the collection</h2>
     <div>
         <ul>
-            {products.map((prod: Props) => (
+            {products?.map((prod) => (
                 <li className=" mb-4" key={prod._id} >
                     <a className="flex gap-4 items-center justify-start" href={`/admin/collection/${categoryId}/${prod._id}`}>
                     <img width={100} height={100} src={prod.thumbnail} alt={prod.title} />
